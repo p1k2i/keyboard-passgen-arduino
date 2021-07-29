@@ -358,40 +358,33 @@ void updateBtns()
 	btnPressed2 = btnPressed;
 	needRefreshLcd = true;
 
-	if (isSleepMode() && isBtnPressed(BTN_OK))
+	if (isSleepMode())
 	{
+		if (isBtnPressed(BTN_CANCEL)) return;
 		sleepModeOff();
-		return;
+		if (isBtnPressed(BTN_OK)) return;
 	}
-
-	if (!isSleepMode()) sleepTimer = 0;
+	else
+	{
+		sleepTimer = 0;
+	}
 
 	if (menu == MENU_PRESETWELLCOME)
 	{
 		if (isBtnPressed(BTN_CANCEL))
 		{
-			if (isSleepMode())
+			if (currentPreset->GetId() != 0)
 			{
-				sleepModeOff();
+				clearPass();
+				currentPreset = zeroPreset;
 			}
 			else
 			{
-				if (currentPreset->GetId() != 0)
-				{
-					clearPass();
-					currentPreset = zeroPreset;
-				}
-				else
-
-				{
-					sleepModeOn();
-				}
+				sleepModeOn();
 			}
 			
 			return;
 		}
-
-		sleepModeOff();
 
 		if (currentPreset->IsPassEnabled())
 		{
