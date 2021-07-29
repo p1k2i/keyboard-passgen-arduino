@@ -16,3 +16,15 @@ However, your final passwords are not generated with the seed only, cracker need
 3) Enable "Autolock" (exit from preset after 30sec of inactivity and after avery password generation)
 
 ![preview](preview.jpg)
+
+
+Examples:
+
+seed (base 10) | code | password numeric | password basic | password advanced
+--- | --- | --- | --- | ---
+111 | 0 | 049549805917 | 4bwiBkdjgmic | bF<ljng/jQl(
+123 | 0 | 662921249621 | vz8WVg6xU2L1 | ;?f`@,E=^"U_
+123 | 00 | 662921249621 | vz8WVg6xU2L1 | ;?f`@,E=^"U_
+123 | 1 | 217609576606 | VMyRT7w9xRRv | _V][]'zH=z[Z
+123 | 10 | 972759792100 | qe85yo1ELGdt | UhGc>r@NUogw
+123 | 01 | 398377023851 |  Ygzs112r7F71 | b,}v_!"8Fne_
