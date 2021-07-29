@@ -61,7 +61,8 @@ void resetInputBuffer()
 void appendInputBuffer(const byte val, const unsigned int maxLen = INPUT_BUFFER_LEN)
 {
 	if (inputBufferCursor == maxLen)
-		inputBufferCursor %= maxLen;
+		//inputBufferCursor %= maxLen;
+		return;
 	inputBuffer[inputBufferCursor] = val;
 	++inputBufferCursor;
 }
@@ -295,7 +296,7 @@ void lcdPrintArray(byte *array, unsigned int len, unsigned int screenSize = 16)
 
 void lcdPrintInputBuffer()
 {
-	for (unsigned int i = 0; i < inputBufferCursor && i < 16; i++)
+	for (unsigned int i = max(((int)inputBufferCursor)-16, 0); i < inputBufferCursor; i++)
 	{
 		lcd.print(inputBuffer[i]);
 	}
