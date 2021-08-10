@@ -358,6 +358,13 @@ void updateBtns()
 	btnPressed2 = btnPressed;
 	needRefreshLcd = true;
 
+#ifdef DEBUG
+	Serial.print("Analog read keyboard code = ");
+	Serial.print(btnPressedCode);
+	Serial.print(", btn num is ");
+	Serial.println(btnPressed);
+#endif
+
 	if (isSleepMode())
 	{
 		if (isBtnPressed(BTN_CANCEL)) return;
@@ -1002,6 +1009,7 @@ void setup()
 #endif
 	Keyboard.begin();
 	pinMode(PIN_BTN_RESET, INPUT_PULLUP);
+	pinMode(PIN_KEYBOARD, INPUT);
 	zeroPreset = new Preset();
 	savedPreset = new Preset();
 	currentPreset = zeroPreset;
