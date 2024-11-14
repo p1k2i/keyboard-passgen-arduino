@@ -1,19 +1,22 @@
-# keyboard-passgen-arduino
-(Password generator p1k)
+# P1K2I's Password Keyboard
 
-Keyboard password generator with promicro16 (or phisical password manager).
+This custom USB keyboard, built using Arduino and 3D-printed parts, generates passwords on demand. Rather than storing passwords, it uses seeds and a unique key to create the same password each time, ensuring security without a password vault. I’ve also included a master password to lock the device and added a few convenient presets.
 
-Is connecting like a keyboard via USB, no special drives needed. On the top panel is located 10 numeric buttons, 4 for switching presets, 1 for open and iterate settings, 1 for generate random password and 2 buttons for confirm and cancel actions. One more button is located under the bottom which inmediatly reset the device (erase all data and restore default settings).
+The software installs on a **Pro Micro ATmega32U4**. It connects as a USB keyboard without requiring special drivers. The top panel has 10 numeric buttons, 4 for switching between presets, 1 for opening and iterating settings, 1 for generating a random password, and 2 for confirm and cancel actions. A reset button on the bottom instantly erases all data and restores default settings.
 
-Before using a preset, you need to specify your unique numeric seed. That seed will be used for generate passwords. And then, writing the same numeric code (in the main page of the preset) you will receive the same password. And yes, you can specify a table of symbols (Numeric, Basic, Advanced) and password length (up to 512).
+To use a preset, you first specify a unique numeric seed. This seed generates passwords, and entering the same numeric code on the preset’s main page will always yield the same password. You can also choose a symbol table (Numeric, Basic, Advanced) and specify a password length (up to 512 characters).
 
-Are available 4 presets for save them in EEPROM with encryption and 1 preset (preset #0) stored in the RAM memory. Every preset can be secured with a numeric master-password. Every data will be encrypted with that master-password. A hash of that master-password is present in the EEPROM and will be used for identify user and log in.
+Four presets can be saved in encrypted EEPROM storage, while preset #0 is stored in RAM. Each preset can be protected by a numeric master password, which encrypts all data using that master password. A hash of this password, stored in EEPROM, authenticates the user at login.
 
-Your important data (seed, length of generated password, name of the table of symbols) are always encrypted if master-password is enabled. So the only way to extract information (for example your seed) from the device is to find correct master-password via brute force using the hash. So do not set short and obvious passwords!
-However, your final passwords are not generated with the seed only, cracker needs to know codes for combine them with that seed. So, my recomendations for setup a good secured preset are:
-1) Use strong master-password (8+, up to 128)
-2) Use a large codes (like 4-6 numbers or more, up to 128)
-3) Enable "Autolock" (exit from preset after 30sec of inactivity and after avery password generation)
+Your important data (seed, password length, symbol table name) remains encrypted if the master password is enabled. This means the only way to retrieve information like the seed is by brute-forcing the master password hash, so avoid setting short or obvious passwords!
+
+Finally, note that passwords are generated using more than just the seed alone; an attacker would also need specific codes to combine with the seed. Here are my recommendations for setting up a secure preset:
+
+1) Use a strong master password – Ensure your master password is at least 8 characters long (up to 128 characters for added security). Avoid easily guessed words or patterns to enhance protection.
+2) Set longer codes – For optimal security, use codes with 4 to 6 digits or more, up to 128 digits. This makes brute-force attempts significantly harder and strengthens each password generation.
+3) Enable "Autolock" – Activate the autolock feature to automatically exit a preset after 30 seconds of inactivity and immediately after each password generation. This adds a layer of security by preventing unauthorized access during idle times.
+
+By following these guidelines, your custom USB keyboard can serve as a highly secure, on-demand password generator, minimizing the need for external password storage.
 
 ![preview](preview.jpg)
 
